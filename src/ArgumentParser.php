@@ -21,15 +21,27 @@ class ArgumentParser
     {
         $current = current($input);
         switch ($current) {
+
             case '--log-junit':
                 $output->logJunit = next($input);
                 break;
+
+            case '--log-json':
+                $output->logJson = next($input);
+                break;
+
             case '--colors':
                 $output->colors = true;
                 break;
+
             case '--configuration':
                 $output->configuration = next($input);
                 break;
+
+            case '--filter':
+                $output->filter = next($input);
+                break;
+
             default:
                 $this->parseSuiteArgument($input, $output);
                 break;

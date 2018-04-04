@@ -58,12 +58,20 @@ class TestRunner
         $this->remote->exec($command);
         
         // Translate and save log files
-        $this->remote->get($remoteArguments->logJunit, $arguments->logJunit);
-        $log = $this->read($arguments->logJunit);
-        $this->write($arguments->logJunit, $this->logMapper->toLocal($log));
+
+        $remoteLog="";
+        $localLog="";
+        if($arguments->logJson) {
+            $remoteLog = $remoteArguments->logJson;
+            $localLog  = $arguments->logJson;
+        } else {
+            $remoteLog = $remoteArguments->logJunit;
+            $localLog  = $arguments->logJunit;
+        }
+        $this->remote->get($remoteLog, $localLog);
         
         // Cleanup
-        $this->remote->delete($remoteArguments->logJunit);
+        $this->remote->delete($remoteLog);
     }
         
     protected function buildCommand($arguments)

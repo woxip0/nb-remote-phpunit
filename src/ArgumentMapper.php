@@ -5,6 +5,7 @@ namespace Foogile\NetBeans\PhpUnit;
 class ArgumentMapper
 {
     const LOG_NAME = 'nb-phpunit-log.xml';
+    const LOG_NAME_JSON = 'nb-phpunit-log.json';
     const SUITE_NAME = 'NetBeansSuite.php';
     
     private $pathMappings;
@@ -29,8 +30,14 @@ class ArgumentMapper
         $out = new Arguments;
         $out->colors = $arguments->colors;
         $out->configuration = $this->getRemotePath($arguments->configuration);
-        $out->logJunit = $this->getRemoteTemporaryPath(self::LOG_NAME);
+        if($arguments->logJunit) {
+            $out->logJunit = $this->getRemoteTemporaryPath(self::LOG_NAME);
+        } 
+        if($arguments->logJson) {
+            $out->logJson = $this->getRemoteTemporaryPath(self::LOG_NAME_JSON);
+        }
         $out->suitePath = $this->getRemoteTemporaryPath(self::SUITE_NAME);
+        $out->filter = $arguments->filter;
         $out->suiteArguments = array_map(array($this, 'getRemotePath'), $arguments->suiteArguments);
         return $out;
     }

@@ -8,6 +8,7 @@ class Arguments
     public $colors = false;
     public $configuration;
     public $suitePath;
+    public $filter;
     public $suiteArguments = array();
     
     public function __toString()
@@ -16,6 +17,10 @@ class Arguments
         
         if ($this->logJunit) {
             $parts[] = "--log-junit {$this->logJunit}";
+        }
+
+        if ($this->logJson) {
+            $parts[] = "--log-json {$this->logJson}";
         }
         
         if ($this->colors) {
@@ -32,6 +37,11 @@ class Arguments
                 $parts[] = "--run=$argument";
             }
         }
+
+        if($this->filter) {
+            $parts[] = "--filter $this->filter";
+        }
+
         
         return implode(' ', $parts);
     }
