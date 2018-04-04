@@ -1,9 +1,6 @@
 # NetBeans remote PHPUnit runner
 
-Custom PHPUnit script that enables NetBeans to run tests on a remote
-host. Mainly developed to make Vagrant environments more convenient to
-work with, but it can easily be extended to communicate with other
-remote hosts.
+Fork repository to add Docker capabilities.
 
 ## Installation
 
