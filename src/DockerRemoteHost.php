@@ -5,11 +5,21 @@ namespace Foogile\NetBeans\PhpUnit;
 class DockerRemoteHost implements RemoteHostInterface
 {
     private $dockerContainerID;
-    
+    private $dockercontainerName;
     public function __construct($dockerContainerName) 
     { 
+		if(empty($dockerContainerName)){
+			echo "ERROR: you must provide a valid \$dockerContainerName".
+			return;
+		}
+		
         $cmd = "docker ps -aqf \"name=$dockerContainerName\"";
         $this->dockerContainerID = exec($cmd);
+        
+        if(empty($this->dockerContainerID)) {
+			echo "ERROR: docker container \"$dockerContainerName\" not found ";
+			echo "Be sure to correctly set \$dockerName in phpunit-docker.php";
+		}
     }
   
     public function put($localPath, $remotePath)
