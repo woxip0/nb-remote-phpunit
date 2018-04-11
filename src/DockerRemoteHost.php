@@ -6,8 +6,10 @@ class DockerRemoteHost implements RemoteHostInterface
 {
     private $dockerContainerID;
     private $dockercontainerName;
+    
     public function __construct($dockerContainerName) 
     { 
+		$this->dockercontainerName = $dockercontainerName;
 		if(empty($dockerContainerName)){
 			echo "ERROR: you must provide a valid \$dockerContainerName".
 			return;

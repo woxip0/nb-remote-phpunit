@@ -4,13 +4,16 @@ Fork repository to add Docker capabilities.
 
 ## Installation
 
-The package should be installed using composer:
-
-```Shell
-compose require foogile/nb-remote-phpunit
+- Clone this repository
+- run: 
 ```
+composer install
+```
+- If you'll use ssh for testing, set up $dockerHost, $dockerUser, $dockerPass and 
+  localWorkingDirectory in phpunit-docker-ssh.php
 
-Subsequent sections desribe more specific installations.
+- If you want to use native docker commands set up $dockerName and $localWorkingDirectory
+  in phpunit-docker.php
 
 ### Vagrant
 
