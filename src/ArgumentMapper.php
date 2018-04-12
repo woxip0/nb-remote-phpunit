@@ -43,12 +43,18 @@ class ArgumentMapper
     }
     
     private function getRemotePath($localPath)
-    {
-        return str_replace(
+    {	
+        $res = str_replace(
             array_keys($this->pathMappings),
             array_values($this->pathMappings),
             $localPath
         );
+			
+		if(DIRECTORY_SEPARATOR != '/') {
+			$res = str_replace(DIRECTORY_SEPARATOR, '/', $res);
+		}
+		
+		return $res;
     }
     
     private function getRemoteTemporaryPath($filename)

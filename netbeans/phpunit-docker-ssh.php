@@ -11,7 +11,6 @@ $dockerUser = '';
 $dockerPass = '';
 $localWorkingDirectory = dirname(dirname(dirname(__FILE__))) . DS . 'html';
 
-
 $pathMappings = array ($localWorkingDirectory => '/var/www/html');
 $tmpPath = '/tmp';
 $remotePhpUnitPath = '/usr/bin/phpunit';
