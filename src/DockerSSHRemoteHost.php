@@ -19,7 +19,7 @@ class DockerSSHRemoteHost implements RemoteHostInterface
         $this->ssh = new SSH2("$this->dockerHost");
         if (!$this->ssh->login($this->dockerUser, $this->dockerPass)) {
             $this->ssh = null;
-            echo "Verify your ssh-credentials netbeans/phpunit-docker-ssh.php";
+            echo "Verify your ssh-credentials netbeans/phpunit-docker-ssh.php\n";
             exit("Can\'t logging to $this->dockerUser @ $this->dockerHost");
         }
     }
@@ -31,7 +31,7 @@ class DockerSSHRemoteHost implements RemoteHostInterface
 					   $localPath,
 					   SCP::SOURCE_LOCAL_FILE))
 		{
-			throw new Exception("Failed to send file");
+			exit("Failed to send file");
 		}
     }
     
@@ -42,7 +42,7 @@ class DockerSSHRemoteHost implements RemoteHostInterface
 					   $localPath,
 					   true))
 		{
-			throw new Exception("Failed to receive file");
+			exit("Failed to receive file");
 		}
     }
 

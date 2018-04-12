@@ -1,15 +1,16 @@
 <?php
-
 namespace Foogile\NetBeans\PhpUnit;
 
-set_include_path(get_include_path() . ':' . __DIR__ . '/../');
+define('DS', DIRECTORY_SEPARATOR);
+set_include_path(get_include_path() . (DS == '/' ? ':' : ';') . dirname(__DIR__));
 require 'vendor/autoload.php';
 
 // EDITME:
 $dockerHost = '';
 $dockerUser = '';
 $dockerPass = '';
-$localWorkingDirectory = realpath(dirname(__FILE__) . '/../../html');
+$localWorkingDirectory = dirname(dirname(dirname(__FILE__))) . DS . 'html';
+
 
 $pathMappings = array ($localWorkingDirectory => '/var/www/html');
 $tmpPath = '/tmp';
